@@ -5,7 +5,7 @@ import localFont from "next/font/local"
 
 
 const headingfont=localFont({
-    src: '../../public/fonts/font.woff2',
+    src: '../public/fonts/font.woff2',
 
 
 })
