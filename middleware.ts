@@ -6,11 +6,10 @@ export default authMiddleware({
   afterAuth(auth, req) {
     const url = req.nextUrl;
 
-    // If the user is authenticated and on a public route
+    // Redirect authenticated users on public routes to their organization page
     if (auth.userId && auth.isPublicRoute) {
       let path = '/select-org';
 
-      // If the user has an organization ID, redirect to the organization page
       if (auth.orgId) {
         path = `/organization/${auth.orgId}`;
       }
@@ -19,12 +18,12 @@ export default authMiddleware({
       return NextResponse.redirect(orgSelection);
     }
 
-    // If the user is not authenticated and trying to access a non-public route
+    // Redirect non-authenticated users trying to access non-public routes to sign in
     if (!auth.userId && !auth.isPublicRoute) {
       return redirectToSignIn({ returnBackUrl: req.url });
     }
 
-    // If the user is authenticated and has an orgId but is on the wrong page
+    // Redirect authenticated users with an orgId away from the org selection page
     if (auth.userId && auth.orgId && req.nextUrl.pathname === "/select-org") {
       const orgSelection = new URL(`/organization/${auth.orgId}`, req.url);
       return NextResponse.redirect(orgSelection);

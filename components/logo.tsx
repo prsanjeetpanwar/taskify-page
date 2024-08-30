@@ -1,8 +1,8 @@
+
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import localFont from "next/font/local"
-
 
 const headingfont=localFont({
     src: '../public/fonts/font.woff2',

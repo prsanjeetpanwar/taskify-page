@@ -2,12 +2,14 @@ import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/logo"
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
 import { Plus } from "lucide-react"
+import { MobileSidebar } from "./mobileSidebar"
 
 export const Navbar = () => {
 
     return (
 
-        <div className="fixed z-50 top-0 px-4 w-full h-14 border-b shadow-sm bg-white flex items-center">
+        <nav className="fixed z-50 top-0 px-4 w-full h-14 border-b shadow-sm bg-white flex items-center">
+            <MobileSidebar/>
             <div className="flex items-center gap-x-4">
                 <div className="hidden md:flex">
                     <Logo />
@@ -31,7 +33,11 @@ export const Navbar = () => {
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-
+                                gap: 3,
+                            },
+                            avatarBox: {
+                                height: 35,
+                                width: 35
                             }
                         }
                     }}
@@ -41,18 +47,21 @@ export const Navbar = () => {
                     afterSignOutUrl="/"
                     appearance={{
                         elements: {
-                            avatarBox: 'Box',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: 30,
-                            width: 30,
+                            avatarBox: {
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: 30,
+                                width: 30,
+                            },
 
-                        }
+                        },
+
+
                     }}
                 />
             </div>
 
-        </div>
+        </nav>
 
     )
 }
